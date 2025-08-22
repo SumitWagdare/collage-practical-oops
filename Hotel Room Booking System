@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class HotelRoomManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int floors = 3;       // Example: 3 floors
+        int roomsPerFloor = 4; // Example: 4 rooms per floor
+        boolean[][] rooms = new boolean[floors][roomsPerFloor]; // false = available, true = booked
+
+        int choice;
+        do {
+            System.out.println("\n--- HOTEL ROOM MANAGEMENT ---");
+            System.out.println("1. View Available Rooms");
+            System.out.println("2. Book a Room");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Show availability
+                    System.out.println("\nAvailable Rooms:");
+                    for (int i = 0; i < floors; i++) {
+                        System.out.print("Floor " + (i + 1) + ": ");
+                        for (int j = 0; j < roomsPerFloor; j++) {
+                            System.out.print((rooms[i][j] ? "[X]" : "[O]") + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println("O = Available, X = Booked");
+                    break;
+
+                case 2:
+                    // Book a room
+                    System.out.print("Enter floor number (1-" + floors + "): ");
+                    int floor = sc.nextInt() - 1;
+
+                    System.out.print("Enter room number (1-" + roomsPerFloor + "): ");
+                    int room = sc.nextInt() - 1;
+
+                    if (floor >= 0 && floor < floors && room >= 0 && room < roomsPerFloor) {
+                        if (!rooms[floor][room]) {
+                            rooms[floor][room] = true;
+                            System.out.println("Room booked successfully!");
+                        } else {
+                            System.out.println("Sorry, this room is already booked.");
+                        }
+                    } else {
+                        System.out.println("Invalid floor or room number.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Exiting system. Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 3);
+
+        sc.close();
+    }
+}
