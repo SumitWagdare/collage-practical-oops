@@ -1,0 +1,57 @@
+// Superclass
+class BankAccount {
+    String accountHolder;
+    double balance;
+
+    // Constructor
+    BankAccount(String accountHolder, double balance) {
+        this.accountHolder = accountHolder;
+        this.balance = balance;
+    }
+
+    // Method to display account details
+    void displayAccountDetails() {
+        System.out.println("Account Holder: " + accountHolder);
+        System.out.println("Balance: " + balance);
+    }
+
+    // Method to deposit money
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+            System.out.println("Updated Balance: " + balance);
+        } else {
+            System.out.println("Invalid deposit amount!");
+        }
+    }
+}
+
+// Subclass extending BankAccount
+class SavingsAccount extends BankAccount {
+    double interestRate;
+
+    // Constructor
+    SavingsAccount(String accountHolder, double balance, double interestRate) {
+        super(accountHolder, balance);
+        this.interestRate = interestRate;
+    }
+
+    // Method to add interest
+    void addInterest() {
+        double interest = balance * (interestRate / 100);
+        balance += interest;
+        System.out.println("Interest added: " + interest);
+        System.out.println("Updated Balance: " + balance);
+    }
+}
+
+// Main class to test
+public class SingleInheritanceDemo {
+    public static void main(String[] args) {
+        SavingsAccount sa = new SavingsAccount("John Doe", 5000, 5);
+        sa.displayAccountDetails();
+        sa.deposit(2000);
+        sa.addInterest();
+    }
+}
