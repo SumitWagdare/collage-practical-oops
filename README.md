@@ -1,5 +1,5 @@
 # collage-assignments
-collage assignment and project with codes
+collage assignment and project with codes  
 Java Programs Repository
 This repository contains multiple Java programs demonstrating fundamental and advanced concepts.
 Programs Included
